@@ -1,4 +1,15 @@
-export function GeneralInfo(){
+
+export function GeneralInfo({personalInfo, setPersonalInfo}){
+  
+
+   const handleChange = (e)=>{
+      const {name, value} = e.target;
+      setPersonalInfo((prevData)=>({
+        ...prevData,
+        [name]: value,
+      }))
+   }
+
    return (
     <>
     <div className="sectionHeader">
@@ -11,7 +22,9 @@ export function GeneralInfo(){
         <input type="text" 
         id="fullName"
         name="fullName"
+        value={personalInfo.fullName}
         placeholder="Enter your full Name"
+         onChange={handleChange}
          />
     </div>
      
@@ -21,7 +34,9 @@ export function GeneralInfo(){
         <input type="email" 
         id="email"
         name="email"
+        value={personalInfo.email}
         placeholder="youremail@example.com"
+        onChange={handleChange}
          />
     </div>
     
@@ -31,7 +46,9 @@ export function GeneralInfo(){
         <input type="tel" 
         id="phoneNumber"
         name="phoneNumber"
+        value={personalInfo.phoneNumber}
         placeholder="+233 xxx xxxx xx "
+        onChange={handleChange}
          />
     </div>
    </>

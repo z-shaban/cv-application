@@ -1,4 +1,14 @@
-export function Education(){
+export function Education({education, setEducation}){
+  const handleChange= (e)=>{
+   const {name, value} = e.target;
+  
+   setEducation((prevData)=>({
+    ...prevData,
+    [name] : value
+   }))
+
+  }
+
     return(
         <>
        <div className="sectionHeader">
@@ -11,7 +21,11 @@ export function Education(){
          <input type="text"
          name="schoolName"
          id="schoolName"
-         placeholder="University Name" />
+         placeholder="University Name" 
+         value={education.schoolName}
+         onChange={handleChange}
+         />
+         
        </div>
        
         {/* degree*/}
@@ -20,7 +34,10 @@ export function Education(){
          <input type="text"
          name="degree"
          id="degree"
-         placeholder="Bachelor of Science" />
+         placeholder="Bachelor of Science"
+          value={education.degree}
+         onChange={handleChange} />
+
        </div>
        
         {/* duration*/}
@@ -31,12 +48,16 @@ export function Education(){
             <input type="date"
              name="startDate"
              id="startDate"
+              value={education.startDate}
+         onChange={handleChange}
           /> <br />
           {/*end date*/}
           <label htmlFor="degree">End Date</label><br />
             <input type="date"
              name="endDate"
              id="endDate"
+              value={education.endDate}
+         onChange={handleChange}
           />
         </div>
 
