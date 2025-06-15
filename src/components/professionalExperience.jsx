@@ -19,6 +19,11 @@ export function ProfessionalExperience({professionalExperience, setProfessionalE
         }
       ])
      }
+
+     const removeExperience = (indexToRemove)=>{
+      setProfessionalExperience((prevExperience)=>
+      prevExperience.filter((exp, index)=> index !== indexToRemove))
+  }
   
   return(
         <>
@@ -76,7 +81,7 @@ export function ProfessionalExperience({professionalExperience, setProfessionalE
 
         
        </div>
-
+        {index > 0 && <button onClick={()=>removeExperience(index)} >Remove Experience</button>}
       </div>
        ))}
 

@@ -22,6 +22,11 @@ export function Education({education, setEducation}){
     ])
   }
 
+  const removeEducation = (indexToRemove)=>{
+      setEducation((prevEducation)=>
+      prevEducation.filter((edu, index)=> index !== indexToRemove))
+  }
+
     return(
         <>
         <div className="sectionHeader">
@@ -57,7 +62,9 @@ export function Education({education, setEducation}){
 
         {/* duration*/}
        <div className="">
+
         <div className="date">
+
             {/* start date*/}
              <label htmlFor="degree">Start Date</label><br />
             <input type="date"
@@ -66,6 +73,7 @@ export function Education({education, setEducation}){
               value={edu.startDate}
             onChange={(e) => handleChange(index, e)}
           /> <br />
+
           {/*end date*/}
           <label htmlFor="degree">End Date</label><br />
             <input type="date"
@@ -75,14 +83,16 @@ export function Education({education, setEducation}){
             onChange={(e) => handleChange(index, e)}
           />
         </div>
-          </div>
-
+        </div>
+        {index > 0 && <button onClick={()=>removeEducation(index)} >Remove Education</button>}
         </div>
        ))}
 
        
          {/*Add Education*/}
          <button onClick={addEducation} >Add Education</button>
+
+        
         </>
     )
 }
