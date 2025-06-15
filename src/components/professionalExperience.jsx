@@ -62,15 +62,15 @@ export function ProfessionalExperience({professionalExperience, setProfessionalE
        <div className="">
         <div className="date">
             {/* start date*/}
-             <label htmlFor="degree">Start Date</label><br />
+             <label htmlFor="startDate">Start Date</label><br />
             <input type="date"
              name="startDate"
              id={`startDate-${index}`}
              value={exp.startDate}
-         onChange={handleChange}
+         onChange={(e)=> handleChange(e,index)}
           /> <br />
           {/*end date*/}
-          <label htmlFor="degree">End Date</label><br />
+          <label htmlFor="endDate">End Date</label><br />
             <input type="date"
              name="endDate"
              id={`endDate-${index}`}

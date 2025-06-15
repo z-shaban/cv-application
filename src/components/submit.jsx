@@ -18,7 +18,7 @@ export function Submit({personalInfo, education, professionalExperience}){
             <div key={index}>
             <p>{edu.schoolName || 'KNUST'} </p>
            <p>{edu.degree || 'Bachelor of Science'} </p>
-           <p>{edu.startDate || " 2020"} - {education.endDate || '2024'}</p>
+           <p>{edu.startDate || " 2020"} - {edu.endDate || '2024'}</p>
             </div>
             
           
@@ -32,7 +32,7 @@ export function Submit({personalInfo, education, professionalExperience}){
             <div key={index}>
             <p>{exp.jobTitle || 'FrontEnd Engineer'} </p>
            <p>{exp.companyName || 'Amazon'}</p>
-           <p>{exp.startDate || "2025"} - {professionalExperience.endDate || 'present'}</p>
+           <p>{exp.startDate || "2025"} - {exp.endDate || 'present'}</p>
             </div>
            ))}
          </div>
