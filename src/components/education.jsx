@@ -1,45 +1,60 @@
 export function Education({education, setEducation}){
-  const handleChange= (e)=>{
+  const handleChange= (index,e)=>{
    const {name, value} = e.target;
   
-   setEducation((prevData)=>({
-    ...prevData,
-    [name] : value
-   }))
+   setEducation((prevEducation)=>
+     prevEducation.map((edu,i)=>
+    i === index?{...edu, [name]:value}: edu
+    )
+   )
 
+  }
+
+  const addEducation = ()=>{
+    setEducation((prevEducation)=>[
+      ...prevEducation,
+      {
+         schoolName: "",
+         degree: '',
+         startDate: '',
+         endDate: '',
+      }
+    ])
   }
 
     return(
         <>
-       <div className="sectionHeader">
+        <div className="sectionHeader">
          <h2>Education</h2>
        </div>
-        
-         {/* school name*/}
-       <div className="">
+
+       {education.map((edu,index)=>(
+        <div key={index}>
+          
+
+          {/* school name*/}
+         <div className="">
          <label htmlFor="schoolName">School/University</label><br />
          <input type="text"
          name="schoolName"
-         id="schoolName"
+         id={`schoolName-${index}`}
          placeholder="University Name" 
-         value={education.schoolName}
-         onChange={handleChange}
-         />
-         
+         value={edu.schoolName}
+         onChange={(e) => handleChange(index, e)}
+         /> 
        </div>
-       
-        {/* degree*/}
+
+       {/* degree*/}
        <div className="">
          <label htmlFor="degree">Degree</label><br />
          <input type="text"
          name="degree"
-         id="degree"
+         id={`degree-${index}`}
          placeholder="Bachelor of Science"
-          value={education.degree}
-         onChange={handleChange} />
-
+          value={edu.degree}
+        onChange={(e) => handleChange(index, e)}  />
        </div>
-       
+
         {/* duration*/}
        <div className="">
         <div className="date">
@@ -47,24 +62,37 @@ export function Education({education, setEducation}){
              <label htmlFor="degree">Start Date</label><br />
             <input type="date"
              name="startDate"
-             id="startDate"
-              value={education.startDate}
-         onChange={handleChange}
+              id={`startDate-${index}`}
+              value={edu.startDate}
+            onChange={(e) => handleChange(index, e)}
           /> <br />
           {/*end date*/}
           <label htmlFor="degree">End Date</label><br />
             <input type="date"
              name="endDate"
-             id="endDate"
-              value={education.endDate}
-         onChange={handleChange}
+              id={`endDate-${index}`}
+              value={edu.endDate}
+            onChange={(e) => handleChange(index, e)}
           />
         </div>
+          </div>
 
+        </div>
+       ))}
+
+       
          {/*Add Education*/}
-         <button>Add Education</button>
-       </div>
-
+         <button onClick={addEducation} >Add Education</button>
         </>
     )
 }
+
+
+ 
+        
+        
+       
+        
+       
+       
+     

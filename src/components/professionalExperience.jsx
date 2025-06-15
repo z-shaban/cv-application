@@ -1,42 +1,58 @@
 export function ProfessionalExperience({professionalExperience, setProfessionalExperience}){
-     const handleChange = (e)=>{
+     const handleChange = (e, index)=>{
       const {name,value}= e.target;
 
-      setProfessionalExperience((prevData)=>({
-        ...prevData,
-        [name]: value,
-      }))
+      setProfessionalExperience((prevExperience)=>
+        prevExperience.map((edu,i)=>
+        i===index? {...edu,[name]:value}: edu)
+      )
+     }
+
+     const addProfessionalExperience =()=>{
+      setProfessionalExperience((prevExperience)=>[
+        ...prevExperience,
+        {
+           jobTitle: '',
+         companyName : '',
+         startDate: '',
+         endDate: '',
+        }
+      ])
      }
   
   return(
         <>
+       
        <div className="sectionHeader">
          <h2>Professional Experience</h2>
        </div>
         
-         {/* job title*/}
-       <div className="">
+       {professionalExperience.map((exp,index)=>(
+        <div key={index}>
+           
+            {/* job title*/}
+          <div className="">
          <label htmlFor="jobTitle">Job title</label><br />
          <input type="text"
          name="jobTitle"
-         id="jobTitle"
+         id={`jobTitle-${index}`}
          placeholder="Frontend Engineer" 
-         value={professionalExperience.jobTitle}
-         onChange={handleChange}
+         value={exp.jobTitle}
+         onChange={(e)=> handleChange(e, index)}
          />
        </div>
-       
-        {/* company name*/}
-       <div className="companyName">
+
+         {/* company name*/}
+        <div className="companyName">
          <label htmlFor="companyName">Company Name</label><br />
          <input type="text"
          name="companyName"
-         id="companyName"
+         id={`companyName-${index}`}
          placeholder="Company Name" 
-         value={professionalExperience.companyName}
-         onChange={handleChange}/>
+         value={exp.companyName}
+          onChange={(e)=> handleChange(e, index)}/>
        </div>
-       
+
         {/* duration*/}
        <div className="">
         <div className="date">
@@ -44,24 +60,31 @@ export function ProfessionalExperience({professionalExperience, setProfessionalE
              <label htmlFor="degree">Start Date</label><br />
             <input type="date"
              name="startDate"
-             id="startDate"
-             value={professionalExperience.startDate}
+             id={`startDate-${index}`}
+             value={exp.startDate}
          onChange={handleChange}
           /> <br />
           {/*end date*/}
           <label htmlFor="degree">End Date</label><br />
             <input type="date"
              name="endDate"
-             id="endDate"
-             value={professionalExperience.endDate}
-         onChange={handleChange}
+             id={`endDate-${index}`}
+             value={exp.endDate}
+          onChange={(e)=> handleChange(e, index)}
           />
         </div>
 
-         {/*Add Professional Experience*/}
-         <button>Add Experience</button>
+        
        </div>
 
+      </div>
+       ))}
+
+
+        {/*Add Professional Experience*/}
+         <button onClick={addProfessionalExperience}>Add Experience</button>
         </>
     )
 }
+
+

@@ -13,19 +13,19 @@ function App() {
     phoneNumber: ''
    })
 
-   const [education, setEducation]= useState({
+   const [education, setEducation]= useState([{
     schoolName: "",
     degree: '',
     startDate: '',
-    finishDate: '',
-   })
+    endDate: '',
+   }])
 
-   const [professionalExperience, setProfessionalExperience]= useState({
+   const [professionalExperience, setProfessionalExperience]= useState([{
     jobTitle: '',
     companyName : '',
     startDate: '',
     endDate: '',
-   })
+   }])
   return <>
   <GeneralInfo personalInfo={personalInfo} setPersonalInfo={setPersonalInfo}/>
     <Education education={education} setEducation={setEducation} />
